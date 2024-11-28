@@ -155,12 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
               Club: "Atletico Madrid",
               Logo: "https://cdn.sofifa.net/meta/team/7980/120.png",
               Rating: 91,
-              "diving": 89,
-              "handling": 90,
-              "kicking": 78,
-              "reflexes": 92,
-              "speed": 50,
-              "positioning": 88
+              Diving: 89,
+              Handling: 90,
+              Kicking: 78,
+              Reflexes: 92,
+              Speed: 50,
+              Positioning: 88
             },
             {
               Name: "Luka Modrić",
@@ -283,12 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
               Club: "Al-Hilal",
               Logo: "https://cdn.sofifa.net/meta/team/7011/120.png",
               Rating: 84,
-              "diving": 81,
-              "handling": 82,
-              "kicking": 77,
-              "reflexes": 86,
-              "speed": 38,
-              "positioning": 83
+              Diving: 81,
+              Handling: 82,
+              Kicking: 77,
+              Reflexes: 86,
+              Speed: 38,
+              Positioning: 83
             },
             {
               Name: "Bruno Fernandes",
@@ -410,12 +410,12 @@ document.addEventListener("DOMContentLoaded", () => {
               Club: "Paris Saint-Germain",
               Logo: "https://cdn.sofifa.net/meta/team/591/120.png",
               Rating: 89,
-              "diving": 88,
-              "handling": 84,
-              "kicking": 75,
-              "reflexes": 90,
-              "speed": 50,
-              "positioning": 85
+              Diving: 88,
+              Handling: 84,
+              Kicking: 75,
+              Reflexes: 90,
+              Speed: 50,
+              Positioning: 85
             }
           ]
         }
@@ -426,140 +426,392 @@ document.addEventListener("DOMContentLoaded", () => {
   const staticCard = document.getElementById("staticCard");
 
   playersData[0].players.forEach(player => {
-      const card = document.createElement("div");
-      card.className =
-          "flex flex-col items-center p-4 bg-black bg-opacity-50 rounded-xl shadow-md hover:shadow-xl transition-shadow";
-      
-      card.innerHTML = `
-          <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
-          <h3 class="text-lg font-bold text-white">${player.Name}</h3>
-          <p class="text-sm text-white">${player.Position} | ${player.Nationality}</p>
-          <img class="w-6 h-4 mt-2" src="${player.Flag}" alt="${player.Nationality}">
-          <div class="text-center mt-3 text-gray-300">
-              <p><strong>Rating:</strong> ${player.Rating}</p>
-              <div class="grid grid-cols-2 gap-2 mt-2 text-xs text-white">
-                  <div><strong>PAC:</strong> ${player.Pace}</div>
-                  <div><strong>SHO:</strong> ${player.Shooting}</div>
-                  <div><strong>PAS:</strong> ${player.Passing}</div>
-                  <div><strong>DRI:</strong> ${player.Dribbling}</div>
-                  <div><strong>DEF:</strong> ${player.Defending}</div>
-                  <div><strong>PHY:</strong> ${player.Phisical}</div>
-              </div>
-          </div>
-          <button class="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-slate-400 transition duration-700 active:bg-slate-800 " id="showPlayerDataBtn">Add Player</button>
-      `;
+    const card = document.createElement("div");
+    card.className =
+        "flex flex-col items-center p-4 bg-black border-2 bg-opacity-65 rounded-3xl shadow-md hover:shadow-xl transition-shadow";
+    
+    console.log(player.Position);
+    
+    card.innerHTML = `
+        ${player.Position === "GK" ? `
+            <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
+            <h3 class="text-lg font-bold text-white">${player.Name}</h3>
+            <p class="text-sm text-white">${player.Position} | ${player.Nationality}</p>
+            <img class="w-6 h-4 mt-2" src="${player.Flag}" alt="${player.Nationality}">
+            <div class="text-center mt-3 text-gray-300">
+                <p><strong>Rating:</strong> ${player.Rating}</p>
+                <div class="grid grid-cols-2 gap-2 mt-2 text-xs text-white">
+                    <div><strong>DIV:</strong> ${player.Diving}</div>
+                    <div><strong>HAN:</strong> ${player.Handling}</div>
+                    <div><strong>KIC:</strong> ${player.Kicking}</div>
+                    <div><strong>REF:</strong> ${player.Reflexes}</div>
+                    <div><strong>SPD:</strong> ${player.Speed}</div>
+                    <div><strong>POS:</strong> ${player.Positioning}</div>
+                </div>
+            </div>
+            <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerDataBtn">Add Player</button>
+            <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerSubsDataBtn">Add Player</button>
+        ` : `
+            <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
+            <h3 class="text-lg font-bold text-white">${player.Name}</h3>
+            <p class="text-sm text-white">${player.Position} | ${player.Nationality}</p>
+            <img class="w-6 h-4 mt-2" src="${player.Flag}" alt="${player.Nationality}">
+            <div class="text-center mt-3 text-gray-300">
+                <p><strong>Rating:</strong> ${player.Rating}</p>
+                <div class="grid grid-cols-2 gap-2 mt-2 text-xs text-white">
+                    <div><strong>PAC:</strong> ${player.Pace}</div>
+                    <div><strong>SHO:</strong> ${player.Shooting}</div>
+                    <div><strong>PAS:</strong> ${player.Passing}</div>
+                    <div><strong>DRI:</strong> ${player.Dribbling}</div>
+                    <div><strong>DEF:</strong> ${player.Defending}</div>
+                    <div><strong>PHY:</strong> ${player.Phisical}</div>
+                </div>
+            </div>
+            <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerDataBtn">Add Player</button>
+             <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerSubsDataBtn">Add Subs Player</button>
+
+        `}
+    `;
+    
       
       cardsContainer.appendChild(card);
-
       const showPlayerDataBtn = card.querySelector("#showPlayerDataBtn");
   showPlayerDataBtn.addEventListener("click", () => {
 
       const positionSlot = document.getElementById(player.Position); 
 
       if (positionSlot) {
-          positionSlot.innerHTML = `
+        positionSlot.innerHTML = `
+        ${player.Position === "GK" ? `
+            <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                <button class="h-40" aria-label="Card Button">
+                    <img src="CARDft.png" class="w-28 h-40">
+                    <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                        <div class="">
+                            <div class="flex">
+                                <div class="text-sm relative left-1.5 flex flex-col">
+                                    <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
+                                    <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
+                                </div>
+                                <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
+                                    <img src="${player.Photo}" class="w-18" alt="">
+                                </div>
+                            </div>
+                            <div id="nom" class="h-3 flex items-center justify-center mr-9">
+                                <span class="font-bold text-[0.5rem]">${player.Name}</span>
+                            </div>
+                            <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DIV</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Diving}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">HAN</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Handling}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">KIC</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Kicking}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">REF</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Reflexes}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">SPD</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Speed}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">POS</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Positioning}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        ` : `
+            <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                <button class="h-40" aria-label="Card Button">
+                    <img src="CARDft.png" class="w-28 h-40">
+                    <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                        <div class="">
+                            <div class="flex">
+                                <div class="text-sm relative left-1.5 flex flex-col">
+                                    <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
+                                    <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
+                                </div>
+                                <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
+                                    <img src="${player.Photo}" class="w-18" alt="">
+                                </div>
+                            </div>
+                            <div id="nom" class="h-3 flex items-center justify-center mr-9">
+                                <span class="font-bold text-[0.5rem]">${player.Name}</span>
+                            </div>
+                            <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAC</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Pace}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">SHO</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Shooting}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAS</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Passing}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DRI</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Dribbling}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DEF</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Defending}</span></div>
+                                </div>
+                                <div>
+                                    <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PHY</span></div>
+                                    <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Phisical}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        `}
+    `;
+    
+      } else {
+          alert('Position not found!');
+      }
+  });
 
-               <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
-  <button class="h-40" aria-label="Card Button">
-      <img class="" src="CARDft.png" class="w-28 h-40">
-          <div class="text-[#ffffff] gap-1 flex flex-col  items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
-              <div class="">
-                  <div class="flex">
-                      <div class="text-sm relative left-1.5 flex flex-col ">
-                          <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
-                          <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
-                      </div>
+  const showPlayerSubsDataBtn = card.querySelector("#showPlayerSubsDataBtn");
+  showPlayerSubsDataBtn.addEventListener("click", () => {
+      const positionSlots = {
+          "LW": document.getElementById("subsLW"),
+          "ST": document.getElementById("subsST"),
+          "RW": document.getElementById("subsRW"),
+          "CM": document.getElementById("subsCM"),
+          "GK": document.getElementById("subsGK"),
+          "CB": document.getElementById("subsCB"),
+          "LB": document.getElementById("subsLB"),
+          "RB": document.getElementById("subsRB")
+      };
   
-                      <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
-                          <img src="${player.Photo}" class="w-18 " alt="">
+      const positionSlot = positionSlots[player.Position];
+      pos = document.getElementById(player.Position);
+  
+      if (positionSlot) {
+          const attackPositions = ["LW", "ST", "RW"];
+          const defensivePositions = ["CM"];
+          const BackPositions = ["CB", "LB", "RB"];
+          const goalPositions = ["GK"];
+
+          positionSlot.innerHTML += `
+,              ${defensivePositions.includes(player.Position) ? `
+              <div id="subCard-${player.Position}" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                  <button class="h-40" aria-label="Card Button">
+                      <img src="CARDft.png" class="w-28 h-40">
+                      <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                          <div class="">
+                              <div class="flex">
+                                  <div class="text-sm relative left-1.5 flex flex-col">
+                                      <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
+                                      <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
+                                  </div>
+                                  <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
+                                      <img src="${player.Photo}" class="w-18" alt="">
+                                  </div>
+                              </div>
+                              <div id="nom" class="h-3 flex items-center justify-center mr-9">
+                                  <span class="font-bold text-[0.5rem]">${player.Name}</span>
+                              </div>
+                              <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAC</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Pace}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">SHO</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Shooting}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAS</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Passing}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DRI</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Dribbling}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DEF</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Defending}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PHY</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Phisical}</span></div>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                  </div>
-
-                  <div id="nom" class="h-3 flex  items-center justify-center mr-9">
-                      <span class="font-bold text-[0.5rem]">${player.Name}</span>
-                  </div>
-
-                  <div id="specs" class="flex gap-0.5  justify-center items-start mr-[2.1rem] ">
-                      <div class="">
-                          <div class="h-3 flex items-center ">
-                              <span class="text-[0.4rem] font-thin">PAC</span>
-                          </div>
-
-                          <div class="h-2.5 flex items-center justify-center">
-                              <span class="text-[0.4rem] font-semibold">${player.Pace}</span>
-                          </div>
-
-                      </div>
-
-                      <div class="">
-                          
-                          <div class="h-3 flex items-center">
-                              <span class="text-[0.4rem] font-thin">SHO</span>
-                          </div>
-
-                          <div class="h-2.5 flex items-center justify-center">
-                              <span class="text-[0.4rem] font-semibold"> ${player.Shooting}</span>
-                          </div>
-
-                      </div>
-
-                      <div class="">
-                          
-                          <div class="h-3 flex items-center">
-                              <span class="text-[0.4rem] font-thin">PAS</span>
-                          </div>
-
-                          <div class="h-2.5 flex items-center justify-center">
-                              <span class="text-[0.4rem] font-semibold"> ${player.Passing}</span>
-                          </div>
-
-                      </div>
-
-                      <div class="">
-                          
-                          <div class="h-3 flex items-center">
-                              <span class="text-[0.4rem] font-thin" style="display: block;">DRI</span>
-                          </div>
-
-                          <div class="h-2.5 flex items-center justify-center">
-                              <span class="text-[0.4rem] font-semibold"> ${player.Dribbling}</span>
-                          </div>
-
-                      </div>
-
-                      <div class="">
-                          
-                          <div class="h-3 flex items-center">
-                              <span class="text-[0.4rem] font-thin">DEF</span>
-                          </div>
-
-                          <div class="h-2.5 flex items-center justify-center">
-                              <span class="text-[0.4rem] font-semibold"> ${player.Defending}</span>
-                          </div>
-
-                      </div>
-
-                      <div class="">
-                          
-                          <div class="h-3 flex items-center">
-                              <span class="text-[0.4rem] font-thin">PHY</span>
-                          </div>
-
-                          <div class="h-2.5 flex items-center justify-center">
-                              <span class="text-[0.4rem] font-semibold"> ${player.Phisical}</span>
-                          </div>
-
-                      </div>
-                  </div>
+                  </button>
               </div>
-          </div>
-  </button>
-</div>
+                  ` : attackPositions.includes(player.Position) ? `
+              <div id="subCard-${player.Position}" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                  <button class="h-40" aria-label="Card Button">
+                      <img src="CARDft.png" class="w-28 h-40">
+                      <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                          <div class="">
+                              <div class="flex">
+                                  <div class="text-sm relative left-1.5 flex flex-col">
+                                      <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
+                                      <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
+                                  </div>
+                                  <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
+                                      <img src="${player.Photo}" class="w-18" alt="">
+                                  </div>
+                              </div>
+                              <div id="nom" class="h-3 flex items-center justify-center mr-9">
+                                  <span class="font-bold text-[0.5rem]">${player.Name}</span>
+                              </div>
+                              <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAC</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Pace}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">SHO</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Shooting}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAS</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Passing}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DRI</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Dribbling}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DEF</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Defending}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PHY</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Phisical}</span></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </button>
+              </div>
+               ` : BackPositions.includes(player.Position) ? `
+               <div id="subCard-${player.Position}" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                  <button class="h-40" aria-label="Card Button">
+                      <img src="CARDft.png" class="w-28 h-40">
+                      <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                          <div class="">
+                              <div class="flex">
+                                  <div class="text-sm relative left-1.5 flex flex-col">
+                                      <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
+                                      <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
+                                  </div>
+                                  <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
+                                      <img src="${player.Photo}" class="w-18" alt="">
+                                  </div>
+                              </div>
+                              <div id="nom" class="h-3 flex items-center justify-center mr-9">
+                                  <span class="font-bold text-[0.5rem]">${player.Name}</span>
+                              </div>
+                              <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAC</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Pace}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">SHO</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Shooting}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAS</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Passing}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DRI</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Dribbling}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DEF</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Defending}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PHY</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Phisical}</span></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </button>
+              </div>
+              ` : goalPositions.includes(player.Position) ? `
+               <div id="subCard-${player.Position}" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                  <button class="h-40" aria-label="Card Button">
+                      <img src="CARDft.png" class="w-28 h-40">
+                      <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                          <div class="">
+                              <div class="flex">
+                                  <div class="text-sm relative left-1.5 flex flex-col">
+                                      <span class="text-[#ffffff] relative top-2 font-bold text-lg mr-4">${player.Rating}</span>
+                                      <span class="text-[#ffffff] relative bottom-0.5 text-[0.3rem] mr-4">${player.Club}</span>
+                                  </div>
+                                  <div id="photo" class="w-20 relative right-4 bottom-[0.275rem] mr-5">
+                                      <img src="${player.Photo}" class="w-18" alt="">
+                                  </div>
+                              </div>
+                              <div id="nom" class="h-3 flex items-center justify-center mr-9">
+                                  <span class="font-bold text-[0.5rem]">${player.Name}</span>
+                              </div>
+                              <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAC</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Pace}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">SHO</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Shooting}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PAS</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Passing}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DRI</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Dribbling}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DEF</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Defending}</span></div>
+                                  </div>
+                                  <div>
+                                      <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">PHY</span></div>
+                                      <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${player.Phisical}</span></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </button>
+              </div>
+
+              ` : `
+      <h3 class="text-lg font-bold text-white">Position Not Recognized</h3>
+  `}
           `;
       } else {
           alert('Position not found!');
       }
   });
+  
+
   });
 
 
@@ -591,7 +843,7 @@ document.getElementById("CB1Button").addEventListener("click", () => updatePlaye
 document.getElementById("CB2Button").addEventListener("click", () => updatePlayerData("CB2"));
 document.getElementById("RBButton").addEventListener("click", () => updatePlayerData("RB"));
 document.getElementById("GKButton").addEventListener("click", () => updatePlayerData("GK"));
-  
+
 
   playerForm.addEventListener("submit", (event) => {
     event.preventDefault();
