@@ -1,91 +1,613 @@
-// Rearrange player slots for upside-down layout
-const positions = [
-    ["LW", "ST", "RW"], // Forwards
-    ["CM1", "CM2", "CM3"], // Midfielders
-    ["LB", "CB1", "CB2", "RB"], // Defenders
-    ["GK"], // Goalkeeper
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const playersData = [
+        {
+            "players": [
+              {
+                Name: "Lionel Messi",
+                Photo: "https://cdn.sofifa.net/players/158/023/25_120.png",
+                Position: "RW",
+                Nationality: "Argentina",
+                Flag: "https://cdn.sofifa.net/flags/ar.png",
+                Club: "Inter Miami",
+                Logo: "https://cdn.sofifa.net/meta/team/239235/120.png",
+                Rating: 93,
+                Pace: 85,
+                Shooting: 92,
+                Passing: 91,
+                Dribbling: 95,
+                Defending: 35,
+                Phisical: 65
+              },
+              {
+                Name: "Cristiano Ronaldo",
+                Photo: "https://cdn.sofifa.net/players/020/801/25_120.png",
+                Position: "ST",
+                Nationality: "Portugal",
+                Flag: "https://cdn.sofifa.net/flags/pt.png",
+                Club: "Al Nassr",
+                Logo: "https://cdn.sofifa.net/meta/team/2506/120.png",
+                Rating: 91,
+                Pace: 84,
+                Shooting: 94,
+                Passing: 82,
+                Dribbling: 87,
+                Defending: 34,
+                Phisical: 77
+              },
+              {
+                Name: "Kevin De Bruyne",
+                Photo: "https://cdn.sofifa.net/players/192/985/25_120.png",
+                Position: "CM",
+                Nationality: "Belgium",
+                Flag: "https://cdn.sofifa.net/flags/be.png",
+                Club: "Manchester City",
+                Logo: "https://cdn.sofifa.net/players/239/085/25_120.png",
+                Rating: 91,
+                Pace: 74,
+                Shooting: 86,
+                Passing: 93,
+                Dribbling: 88,
+                Defending: 64,
+                Phisical: 78
+              },
+              {
+                Name: "Kylian Mbappé",
+                Photo: "https://cdn.sofifa.net/players/231/747/25_120.png",
+                Position: "ST",
+                Nationality: "France",
+                Flag: "https://cdn.sofifa.net/flags/fr.png",
+                Club: "Real Madrid",
+                Logo: "https://cdn.sofifa.net/meta/team/3468/120.png",
+                Rating: 92,
+                Pace: 97,
+                Shooting: 89,
+                Passing: 80,
+                Dribbling: 92,
+                Defending: 39,
+                Phisical: 77
+              },
+              {
+                Name: "Virgil van Dijk",
+                Photo: "https://cdn.sofifa.net/players/203/376/25_120.png",
+                Position: "CB",
+                Nationality: "Netherlands",
+                Flag: "https://cdn.sofifa.net/flags/nl.png",
+                Club: "Liverpool",
+                Logo: "https://cdn.sofifa.net/meta/team/8/120.png",
+                Rating: 90,
+                Pace: 75,
+                Shooting: 60,
+                Passing: 70,
+                Dribbling: 72,
+                Defending: 92,
+                Phisical: 86
+              },
+              {
+                Name: "Antonio Rudiger",
+                Photo: "https://cdn.sofifa.net/players/205/452/25_120.png",
+                Position: "CB",
+                Nationality: "Germany",
+                Flag: "https://cdn.sofifa.net/flags/de.png",
+                Club: "Real Madrid",
+                Logo: "https://cdn.sofifa.net/meta/team/3468/120.png",
+                Rating: 88,
+                Pace: 82,
+                Shooting: 55,
+                Passing: 73,
+                Dribbling: 70,
+                Defending: 86,
+                Phisical: 86
+              },
+              {
+                Name: "Neymar Jr",
+                Photo: "https://cdn.sofifa.net/players/190/871/25_120.png",
+                Position: "LW",
+                Nationality: "Brazil",
+                Flag: "https://cdn.sofifa.net/flags/br.png",
+                Club: "Al-Hilal",
+                Logo: "https://cdn.sofifa.net/meta/team/7011/120.png",
+                Rating: 90,
+                Pace: 91,
+                Shooting: 83,
+                Passing: 86,
+                Dribbling: 94,
+                Defending: 37,
+                Phisical: 61
+              },
+              {
+                Name: "Mohamed Salah",
+                Photo: "https://cdn.sofifa.net/players/192/985/25_120.png",
+                Position: "RW",
+                Nationality: "Egypt",
+                Flag: "https://cdn.sofifa.net/flags/eg.png",
+                Club: "Liverpool",
+                Logo: "https://cdn.sofifa.net/meta/team/8/120.png",
+                Rating: 89,
+                Pace: 93,
+                Shooting: 87,
+                Passing: 81,
+                Dribbling: 90,
+                Defending: 45,
+                Phisical: 75
+              },
+              {
+                Name: "Joshua Kimmich",
+                Photo: "https://cdn.sofifa.net/players/212/622/25_120.png",
+                Position: "CM",
+                Nationality: "Germany",
+                Flag: "https://cdn.sofifa.net/flags/de.png",
+                Club: "Bayern Munich",
+                Logo: "https://cdn.sofifa.net/meta/team/503/120.png",
+                Rating: 89,
+                Pace: 70,
+                Shooting: 75,
+                Passing: 88,
+                Dribbling: 84,
+                Defending: 84,
+                Phisical: 81
+              },
+              {
+                Name: "Jan Oblak",
+                Photo: "https://cdn.sofifa.net/players/200/389/25_120.png",
+                Position: "GK",
+                Nationality: "Slovenia",
+                Flag: "https://cdn.sofifa.net/flags/si.png",
+                Club: "Atletico Madrid",
+                Logo: "https://cdn.sofifa.net/meta/team/7980/120.png",
+                Rating: 91,
+                "diving": 89,
+                "handling": 90,
+                "kicking": 78,
+                "reflexes": 92,
+                "speed": 50,
+                "positioning": 88
+              },
+              {
+                Name: "Luka Modrić",
+                Photo: "https://cdn.sofifa.net/players/177/003/25_120.png",
+                Position: "CM",
+                Nationality: "Croatia",
+                Flag: "https://cdn.sofifa.net/flags/hr.png",
+                Club: "Real Madrid",
+                Logo: "https://cdn.sofifa.net/meta/team/3468/120.png",
+                Rating: 88,
+                Pace: 74,
+                Shooting: 78,
+                Passing: 89,
+                Dribbling: 90,
+                Defending: 72,
+                Phisical: 65
+              },
+              {
+                Name: "Vinicius Junior",
+                Photo: "https://cdn.sofifa.net/players/238/794/25_120.png",
+                Position: "LW",
+                Nationality: "Brazil",
+                Flag: "https://cdn.sofifa.net/flags/br.png",
+                Club: "Real Madrid",
+                Logo: "https://cdn.sofifa.net/meta/team/3468/120.png",
+                Rating: 89,
+                Pace: 91,
+                Shooting: 88,
+                Passing: 85,
+                Dribbling: 94,
+                Defending: 39,
+                Phisical: 61
+              },
+              {
+                Name: "Brahim Diáz",
+                Photo: "https://cdn.sofifa.net/players/231/410/25_120.png",
+                Position: "LW",
+                Nationality: "Morocco",
+                Flag: "https://cdn.sofifa.net/flags/ma.png",
+                Club: "Real Madrid",
+                Logo: "https://cdn.sofifa.net/meta/team/3468/120.png",
+                Rating: 82,
+                Pace: 85,
+                Shooting: 74,
+                Passing: 78,
+                Dribbling: 85,
+                Defending: 31,
+                Phisical: 56
+              },
+              {
+                Name: "Karim Benzema",
+                Photo: "https://cdn.sofifa.net/players/165/153/25_120.png",
+                Position: "ST",
+                Nationality: "France",
+                Flag: "https://cdn.sofifa.net/flags/fr.png",
+                Club: "Al-Ittihad",
+                Logo :"https://cdn.sofifa.net/meta/team/476/120.png",
+                Rating: 90,
+                Pace: 77,
+                Shooting: 90,
+                Passing: 83,
+                Dribbling: 88,
+                Defending: 40,
+                Phisical: 78
+              },
+              {
+                Name: "Erling Haaland",
+                Photo: "https://cdn.sofifa.net/players/239/085/25_120.png",
+                Position: "ST",
+                Nationality: "Norway",
+                Flag: "https://cdn.sofifa.net/flags/no.png",
+                Club: "Manchester City",
+                Logo: "https://cdn.sofifa.net/players/239/085/25_120.png",
+                Rating: 91,
+                Pace: 89,
+                Shooting: 94,
+                Passing: 65,
+                Dribbling: 80,
+                Defending: 45,
+                Phisical: 88
+              },
+              {
+                Name: "N'Golo Kanté",
+                Photo: "https://cdn.sofifa.net/players/215/914/25_120.png",
+                Position: "CDM",
+                Nationality: "France",
+                Flag: "https://cdn.sofifa.net/flags/fr.png",
+                Club: "Al-Ittihad",
+                Logo: "https://cdn.sofifa.net/meta/team/476/120.png",
+                Rating: 87,
+                Pace: 77,
+                Shooting: 66,
+                Passing: 75,
+                Dribbling: 82,
+                Defending: 88,
+                Phisical: 82
+              },
+              {
+                Name: "Alphonso Davies",
+                Photo: "https://cdn.sofifa.net/players/234/396/25_120.png",
+                Position: "LB",
+                Nationality: "Canada",
+                Flag: "https://cdn.sofifa.net/flags/ca.png",
+                Club: "Bayern Munich",
+                Logo: "https://cdn.sofifa.net/meta/team/503/120.png",
+                Rating: 84,
+                Pace: 96,
+                Shooting: 68,
+                Passing: 77,
+                Dribbling: 82,
+                Defending: 76,
+                Phisical: 77
+              },
+              {
+                Name: "Yassine Bounou",
+                Photo: "https://cdn.sofifa.net/players/209/981/25_120.png",
+                Position: "GK",
+                Nationality: "Morocco",
+                Flag: "https://cdn.sofifa.net/flags/ma.png",
+                Club: "Al-Hilal",
+                Logo: "https://cdn.sofifa.net/meta/team/7011/120.png",
+                Rating: 84,
+                "diving": 81,
+                "handling": 82,
+                "kicking": 77,
+                "reflexes": 86,
+                "speed": 38,
+                "positioning": 83
+              },
+              {
+                Name: "Bruno Fernandes",
+                Photo: "https://cdn.sofifa.net/players/212/198/25_120.png",
+                Position: "CM",
+                Nationality: "Portugal",
+                Flag: "https://cdn.sofifa.net/flags/pt.png",
+                Club: "Manchester United",
+                Logo: "https://cdn.sofifa.net/meta/team/14/120.png",
+                Rating: 88,
+                Pace: 75,
+                Shooting: 85,
+                Passing: 89,
+                Dribbling: 84,
+                Defending: 69,
+                Phisical: 77
+              },
+              {
+                Name: "Jadon Sancho",
+                Photo: "https://cdn.sofifa.net/players/233/049/25_120.png",
+                Position: "LW",
+                Nationality: "England",
+                Flag: "https://cdn.sofifa.net/flags/gb-eng.png",
+                Club: "Manchester United",
+                Logo: "https://cdn.sofifa.net/meta/team/14/120.png",
+                Rating: 84,
+                Pace: 85,
+                Shooting: 74,
+                Passing: 78,
+                Dribbling: 88,
+                Defending: 34,
+                Phisical: 63
+              },
+              {
+                Name: "Trent Alexander-Arnold",
+                Photo: "https://cdn.sofifa.net/players/231/281/25_120.png",
+                Position: "RB",
+                Nationality: "England",
+                Flag: "https://cdn.sofifa.net/flags/gb-eng.png",
+                Club: "Liverpool",
+                Rating: 87,
+                Pace: 76,
+                Shooting: 66,
+                Passing: 89,
+                Dribbling: 80,
+                Defending: 79,
+                Phisical: 71
+              },
+              {
+                Name: "Achraf Hakimi",
+                Photo: "https://cdn.sofifa.net/players/235/212/25_120.png",
+                Position: "RB",
+                Nationality: "Morocco",
+                Flag: "https://cdn.sofifa.net/flags/ma.png",
+                Club: "Paris Saint-Germain",
+                Logo: "https://cdn.sofifa.net/meta/team/591/120.png",
+                Rating: 84,
+                Pace: 91,
+                Shooting: 76,
+                Passing: 80,
+                Dribbling: 80,
+                Defending: 75,
+                Phisical: 78
+              },
+              {
+                Name: "Youssef En-Nesyri",
+                Photo: "https://cdn.sofifa.net/players/235/410/25_120.png",
+                Position: "ST",
+                Nationality: "Morocco",
+                Flag: "https://cdn.sofifa.net/flags/ma.png",
+                Club: "Fenerbahçe",
+                Logo: "https://cdn.sofifa.net/meta/team/88/120.png",
+                Rating: 83,
+                Pace: 82,
+                Shooting: 82,
+                Passing: 63,
+                Dribbling: 77,
+                Defending: 36,
+                Phisical: 80
+              },
+              {
+                Name: "Noussair Mazraoui",
+                Photo: "https://cdn.sofifa.net/players/236/401/25_120.png",
+                Position: "LB",
+                Nationality: "Morocco",
+                Flag: "https://cdn.sofifa.net/flags/ma.png",
+                Club: "Manchester United",
+                Logo: "https://cdn.sofifa.net/meta/team/14/120.png",
+                Rating: 81,
+                Pace: 78,
+                Shooting: 66,
+                Passing: 77,
+                Dribbling: 83,
+                Defending: 77,
+                Phisical: 71
+              },
+              {
+                Name: "Ismael Saibari",
+                Photo: "https://cdn.sofifa.net/players/259/480/25_120.png",
+                Position: "CM",
+                Nationality: "Morocco",
+                Flag: "https://cdn.sofifa.net/flags/ma.png",
+                Club: "PSV",
+                Logo: "https://cdn.sofifa.net/meta/team/682/120.png",
+                Rating: 83,
+                Pace: 89,
+                Shooting: 78,
+                Passing: 80,
+                Dribbling: 86,
+                Defending: 55,
+                Phisical: 84
+              },
+              {
+                Name: "Gianluigi Donnarumma",
+                Photo: "https://cdn.sofifa.net/players/230/621/25_120.png",
+                Position: "GK",
+                Nationality: "Italy",
+                Flag: "https://cdn.sofifa.net/flags/it.png",
+                Club: "Paris Saint-Germain",
+                Logo: "https://cdn.sofifa.net/meta/team/591/120.png",
+                Rating: 89,
+                "diving": 88,
+                "handling": 84,
+                "kicking": 75,
+                "reflexes": 90,
+                "speed": 50,
+                "positioning": 85
+              }
+            ]
+          }
 
-positions.forEach((row, index) => {
-    const rowDiv = document.createElement("div");
-    rowDiv.className = `player-row flex justify-center ${index === positions.length - 1 ? 'items-center' : ''} mb-4`;
+    ];
 
-    row.forEach((position) => {
-        const slot = document.createElement("div");
-        slot.id = position;
-        slot.className = "player-slot bg-black text-center text-sm font-bold p-4 rounded-lg cursor-pointer w-20 h-20";
-        slot.innerHTML = position;
-        slot.onclick = () => addPlayerToSlot(position);
+    const cardsContainer = document.getElementById("cardsContainer");
+    const staticCard = document.getElementById("staticCard");
 
-        rowDiv.appendChild(slot);
-    });
-
-    field.appendChild(rowDiv);
-});
-
-// Add player to a slot
-function addPlayerToSlot(slotId) {
-    const slot = document.getElementById(slotId);
-    const player = players.find((p) => p.position === slotId);
-
-    if (player) {
-        slot.innerHTML = `
-            <div class="card flex flex-col items-center p-2 rounded-lg bg-yellow-300">
-                <img src="${player.photo}" alt="${player.name}" class="w-20 h-28 rounded">
-                <div class="text-center mt-2">
-                    <h3 class="font-bold">${player.name}</h3>
-                    <p class="text-sm">Rating: ${player.rating}</p>
+    playersData[0].players.forEach(player => {
+        const card = document.createElement("div");
+        card.className =
+            "flex flex-col items-center p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow";
+        
+        card.innerHTML = `
+            <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
+            <h3 class="text-lg font-bold">${player.Name}</h3>
+            <p class="text-sm text-gray-400">${player.Position} | ${player.Nationality}</p>
+            <img class="w-6 h-4 mt-2" src="${player.Flag}" alt="${player.Nationality}">
+            <div class="text-center mt-3">
+                <p><strong>Rating:</strong> ${player.Rating}</p>
+                <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
+                    <div><strong>PAC:</strong> ${player.Pace}</div>
+                    <div><strong>SHO:</strong> ${player.Shooting}</div>
+                    <div><strong>PAS:</strong> ${player.Passing}</div>
+                    <div><strong>DRI:</strong> ${player.Dribbling}</div>
+                    <div><strong>DEF:</strong> ${player.Defending}</div>
+                    <div><strong>PHY:</strong> ${player.Phisical}</div>
                 </div>
             </div>
+            <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded" id="showPlayerDataBtn">Show Data</button>
         `;
-        totalPlayers++;
-        updatePlayerCount();
+        
+        cardsContainer.appendChild(card);
 
-        // Show player modal with detailed info
-        showPlayerDetails(player);
-    } else {
-        alert("No player available for this position!");
-    }
-}
+        const showPlayerDataBtn = card.querySelector("#showPlayerDataBtn");
+    showPlayerDataBtn.addEventListener("click", () => {
 
-// Show player details in a modal
-function showPlayerDetails(player) {
-    // Populate modal content
-    playerDetails.innerHTML = `
-        <div class="flex flex-col items-center">
-            <img src="${player.photo}" alt="${player.name}" class="w-24 h-32 rounded mb-4">
-            <h3 class="font-bold text-lg">${player.name}</h3>
-            <p>Club: <img src="${player.logo}" alt="${player.club}" class="inline w-6 h-6"> ${player.club}</p>
-            <p>Nationality: <img src="${player.flag}" alt="${player.nationality}" class="inline w-6 h-6"> ${player.nationality}</p>
-            <p>Rating: ${player.rating}</p>
-            ${player.position === 'GK' ? `
-                <p>Diving: ${player.diving}</p>
-                <p>Handling: ${player.handling}</p>
-                <p>Kicking: ${player.kicking}</p>
-                <p>Reflexes: ${player.reflexes}</p>
-                <p>Speed: ${player.speed}</p>
-                <p>Positioning: ${player.positioning}</p>
-            ` : `
-                <p>Pace: ${player.pace}</p>
-                <p>Shooting: ${player.shooting}</p>
-                <p>Passing: ${player.passing}</p>
-                <p>Dribbling: ${player.dribbling}</p>
-                <p>Defending: ${player.defending}</p>
-                <p>Physical: ${player.physical}</p>
-            `}
-        </div>
-    `;
-    // Make modal visible
-    playerModal.classList.remove("hidden");
-}
+        const positionSlot = document.getElementById(player.Position); 
 
-// Close the modal
-function closePlayerModal() {
-    // Hide the modal
-    playerModal.classList.add("hidden");
-}
+        if (positionSlot) {
+            positionSlot.innerHTML = `
+                <h4>${player.Position}</h4>
+                <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
+                <h3 class="text-lg font-bold">${player.Name}</h3>
+                Rating: ${player.Rating}
+                Club: ${player.Club}
+                Nationality: ${player.Nationality}
+                <strong>PAC:</strong> ${player.Pace}
+                <strong>SHO:</strong> ${player.Shooting}
+                <strong>PAS:</strong> ${player.Passing}
+                <strong>DRI:</strong> ${player.Dribbling}
+                <strong>DEF:</strong> ${player.Defending}
+                <strong>PHY:</strong> ${player.Phisical}
+            `;
+        } else {
+            alert('Position not found!');
+        }
+    });
+    });
 
-// Add event listener for debugging
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM fully loaded and parsed");
+
+    function updatePlayerData(position) {
+      const player = players[position];
+      const display = document.getElementById("playerDisplay");
+
+      display.innerHTML = `
+          <div class="flex justify-center p-4">
+              <img src="${player.Photo}" alt="${player.Name}" class="w-[6rem] h-[8rem] rounded-lg shadow-md" />
+          </div>
+          <div class="text-center">
+              <h3 class="text-xl font-semibold">${player.Name}</h3>
+              <p>Position: ${player.Position}</p>
+              <p>Club: ${player.Club}</p>
+              <p>Rating: ${player.Rating}</p>
+          </div>
+      `;
+  }
+
+  document.getElementById("LWButton").addEventListener("click", () => updatePlayerData("LW"));
+  document.getElementById("STButton").addEventListener("click", () => updatePlayerData("ST"));
+  document.getElementById("RWButton").addEventListener("click", () => updatePlayerData("RW"));
+  document.getElementById("CM1Button").addEventListener("click", () => updatePlayerData("CM1"));
+  document.getElementById("CM2Button").addEventListener("click", () => updatePlayerData("CM2"));
+  document.getElementById("CM3Button").addEventListener("click", () => updatePlayerData("CM3"));
+  document.getElementById("LBButton").addEventListener("click", () => updatePlayerData("LB"));
+  document.getElementById("CB1Button").addEventListener("click", () => updatePlayerData("CB1"));
+  document.getElementById("CB2Button").addEventListener("click", () => updatePlayerData("CB2"));
+  document.getElementById("RBButton").addEventListener("click", () => updatePlayerData("RB"));
+  document.getElementById("GKButton").addEventListener("click", () => updatePlayerData("GK"));
+    
+
+    playerForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const playerData = {
+          Name: playerForm.querySelector("input[name='name']").value,
+          Photo: playerForm.querySelector("input[name='photo']").value,
+          Position: playerForm.querySelector("input[name='position']").value,
+          Nationality: playerForm.querySelector("input[name='nationality']").value,
+          Flag: playerForm.querySelector("input[name='flag']").value || "", 
+          Rating: playerForm.querySelector("input[name='rating']").value || "N/A",
+          Pace: playerForm.querySelector("input[name='pace']").value || 0,
+          Shooting: playerForm.querySelector("input[name='shooting']").value || 0,
+          Passing: playerForm.querySelector("input[name='passing']").value || 0,
+          Dribbling: playerForm.querySelector("input[name='dribbling']").value || 0,
+          Defending: playerForm.querySelector("input[name='defending']").value || 0,
+          Phisical: playerForm.querySelector("input[name='phisical']").value || 0,
+      };
+  
+      if (playerData.Name && playerData.Photo && playerData.Position && playerData.Nationality) {
+          playersData[0].players.push(playerData);
+  
+          const card = document.createElement("div");
+          card.className = "flex flex-col items-center p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow";
+          card.innerHTML = `
+              <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${playerData.Photo}" alt="${playerData.Name}">
+              <h3 class="text-lg font-bold">${playerData.Name}</h3>
+              <p class="text-sm text-gray-400">${playerData.Position} | ${playerData.Nationality}</p>
+              <img class="w-6 h-4 mt-2" src="${playerData.Flag}" alt="${playerData.Nationality}">
+              <div class="text-center mt-3">
+                  <p><strong>Rating:</strong> ${playerData.Rating}</p>
+                  <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
+                      <div><strong>PAC:</strong> ${playerData.Pace}</div>
+                      <div><strong>SHO:</strong> ${playerData.Shooting}</div>
+                      <div><strong>PAS:</strong> ${playerData.Passing}</div>
+                      <div><strong>DRI:</strong> ${playerData.Dribbling}</div>
+                      <div><strong>DEF:</strong> ${playerData.Defending}</div>
+                      <div><strong>PHY:</strong> ${playerData.Phisical}</div>
+                  </div>
+              </div>
+          `;
+          cardsContainer.appendChild(card);
+  
+          modal.classList.add("hidden");
+      } else {
+          alert("Please fill in all the required fields.");
+      }
+  });
+  
+
+    const addPlayerButton = document.querySelector("button[onclick='']");
+    const modal = document.getElementById("playerModal");
+    const cancelModalButton = document.getElementById("cancelPlayerModal");
+    const playerForm = document.getElementById("playerForm");
+
+    addPlayerButton.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+        modal.style.opacity = 0;
+        modal.style.transform = "translateY(-20px)";
+        modal.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+        requestAnimationFrame(() => {
+            modal.style.opacity = 1;
+            modal.style.transform = "translateY(0)";
+        });
+    });
+
+    cancelModalButton.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+
+    playerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const playerData = {
+            name: playerForm.querySelector("input[name='name']").value,
+            photo: playerForm.querySelector("input[name='photo']").value,
+            position: playerForm.querySelector("input[name='position']").value,
+            nationality: playerForm.querySelector("input[name='nationality']").value,
+            club: playerForm.querySelector("input[name='club']").value,
+        };
+
+        if (
+            playerData.name &&
+            playerData.photo &&
+            playerData.position &&
+            playerData.nationality &&
+            playerData.club
+        ) {
+            playersData.push(playerData); 
+            modal.classList.add("hidden");
+            console.log("Player added:", playerData);
+        }
+    });
 });
+
+function openPlayerModal() {
+    document.getElementById("playerModal").classList.remove("hidden");
+}
+
+function closePlayerModal() {
+    document.getElementById("playerModal").classList.add("hidden");
+}
+
+function savePlayer() {
+    closePlayerModal();
+}
