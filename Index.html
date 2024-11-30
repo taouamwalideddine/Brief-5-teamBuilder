@@ -5,131 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>teamBuilder</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-black bg-[url('bgfield.png')] bg-cover bg-no-repeat">
-      <nav class=" bg-[#80808026] p-4 min-w-full md:min-w-full">
-        <ul class="flex justify-around items-center">
-          <li><a href="#" class="text-white text-sm md:text-lg font-semibold hover:text-gray-400 transition duration-300">Fut Champion</a></li>
-          
-          <li><a href="#" class="text-white text-sm md:text-lg font-semibold hover:text-gray-400 transition duration-300">About</a></li>
-          <li><button onclick="" type="button" class="bg-[#80808048] px-3 py-2 md:px-4 md:py-2 rounded-full hover:bg-[#292929] active:bg-red-700 text-white text-sm md:text-lg font-semibold transition duration-300 ">Add Player</button></li>
-        </ul>
-      </nav>
-      
-      <div class="flex gap-10 mt-4 ">
-        <div class="main-players min-h-[770px] w-[896px]  flex flex-col bg-[url('field-bg.png')] bg-no-repeat ">
-            <div class="flex justify-center gap-32">
-                <button type="button"  class="flex flex-col items-center ">
-                    <div id="LW" class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] text-white w-[6rem] p-0 hover:transform hover:scale-100 scale-95"> 
-                    </div>
-                         <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        LW
-                    </div>
-                </button>
-              
-                <button type="button"  class="flex flex-col items-center ">
-                    <div id="ST" class=" mt-[-0.7rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95 ">
-                    </div>
-                         <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        ST
-                    </div>
-                </button>
-                <button type="button"  class="flex flex-col items-center ">
-                    <div id="RW" class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95 ">
-                    </div>
-                         <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        RW
-                    </div>
-                </button>
-            </div>
-            <div class="flex justify-center gap-44">
-                <button type="button"  class="flex flex-col items-center ">
-                    <div id="CM" class=" mt-[-1rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">
-                    </div>
-                    <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        CM
-                    </div>
-                </button>
-                <button type="button"  class="flex flex-col items-center ">
-                    <div class=" mt-[-1rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">
-                    </div>
-                    <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        CM
-                    </div>
-                </button>
-                <button type="button"  class="flex flex-col items-center ">
-                    <div class=" mt-[-1rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">
-                    </div>
-                    <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        CM
-                    </div>
-                </button>
-              
-            </div>
-            <div class="flex justify-center gap-32">
-                <button type="button"  class="flex flex-col items-center ">
-                    <div id="LB" class=" mt-[4rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">
-                    </div>
-                    <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        LB
-                    </div>
-                </button>
-                <button type="button"  class="flex flex-col items-center ">
-                    <div id="CB" class=" mt-[2rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">
-                    </div>
-                    <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        CB
-                    </div>
-                </button>
-                <button type="button"  class="flex flex-col items-center ">
-                    <div class=" mt-[2rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">>
-                    </div>
-                         <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        CB
-                    </div>
-                </button>
-                <button type="button"  class="flex flex-col items-center ">
-                    <div class=" mt-[4rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95  ">
-                    </div>
-                         <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                        RB
-                    </div>
-                </button>
-            </div>
-            <div class="flex justify-center">
-                <button type="button" id="GK" class="flex flex-col items-center ">
-                  <div class="mt-[-2rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95 ">
-                  </div>
-                  <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
-                    GK
-                  </div>
-                </button>
-              </div>
-        </div>
-        <div class="w-[400px] bg-[#dfdfdf45] h-[39.375rem] rounded-lg shadow-lg">
-            <div id="subsLW" class=" flex justify-evenly h-[155px] mt-1">
-                <div class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] p-0 hover:transform hover:scale-100 scale-95">
-                </div>
-            </div>
-            <div id="subsLB" class=" flex justify-evenly h-[155px] mt-1">
-                <div class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] p-0 hover:transform hover:scale-100 scale-95">
-                </div>
-            </div>
-            <div id="subsCB" class=" flex justify-evenly h-[155px] mt-1">
-                <div class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] p-0 hover:transform hover:scale-100 scale-95">
-                </div>
-            </div>
-            <div id=" subsRB" class=" flex justify-evenly h-[155px] mt-1">
-                <div class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] p-0 hover:transform hover:scale-100 scale-95">
-                </div>
-            </div>
-        </div>
-      </div>
+  <nav class="bg-[#80808026] p-4 navbar">
+    <ul class="flex justify-around items-center navbar-list">
+      <li class="navbar-item">
+        <a href="#" class="text-white text-sm md:text-lg font-semibold hover:text-gray-400 transition duration-300 navbar-link">Fut Champion</a>
+      </li>
+      <li class="navbar-item">
+        <button onclick="openPlayerModal()" class="bg-[#80808048] px-3 py-2 md:px-4 md:py-2 rounded-full hover:bg-[#292929] active:bg-red-700 text-white text-sm md:text-lg font-semibold transition duration-300 btn-primary">
+          Add Player
+        </button>
+      </li>
+    </ul>
+  </nav>
 
-      <div id="cardsContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-5">
+      
+  <div class="flex flex-col sm:flex-row gap-4 mt-4 items-center">
+    <!-- Field Section -->
+    <div class="main-players min-h-[770px] w-full max-w-[896px] flex flex-col bg-[url('field-bg.png')] bg-no-repeat bg-center mx-auto">
+      <div class="flex justify-center gap-8 sm:gap-32">
+        <button type="button" class="flex flex-col items-center">
+          <div id="LW" class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] text-white w-[6rem] p-0 hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            LW
+          </div>
+        </button>
+  
+        <button type="button" class="flex flex-col items-center">
+          <div id="ST" class="mt-[-0.7rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            ST
+          </div>
+        </button>
+        <button type="button" class="flex flex-col items-center">
+          <div id="RW" class="bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            RW
+          </div>
+        </button>
       </div>
-      <div id="cardsSubsContainer"></div>
-        
+      <div class="flex justify-center gap-8 sm:gap-44">
+        <button type="button" class="flex flex-col items-center">
+          <div id="CM" class="mt-[-1rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            CM
+          </div>
+        </button>
+        <button type="button" class="flex flex-col items-center">
+          <div class="mt-[-1rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            CM
+          </div>
+        </button>
+        <button type="button" class="flex flex-col items-center">
+          <div class="mt-[-1rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            CM
+          </div>
+        </button>
+      </div>
+      <div class="flex justify-center gap-6 sm:gap-32">
+        <button type="button" class="flex flex-col items-center">
+          <div id="LB" class="mt-[4rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            LB
+          </div>
+        </button>
+        <button type="button" class="flex flex-col items-center">
+          <div id="CB" class="mt-[2rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            CB
+          </div>
+        </button>
+        <button type="button" class="flex flex-col items-center">
+          <div class="mt-[2rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            CB
+          </div>
+        </button>
+        <button type="button" class="flex flex-col items-center">
+          <div class="mt-[4rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            RB
+          </div>
+        </button>
+      </div>
+      <div class="flex justify-center">
+        <button type="button" id="GK" class="flex flex-col items-center">
+          <div class="mt-[-2rem] bg-[url('CARDft.png')] bg-cover bg-no-repeat h-[8.8rem] w-[6rem] hover:transform hover:scale-100 scale-95">
+          </div>
+          <div class="bg-[url('pos_base.png')] bg-contain bg-no-repeat h-11 w-11 mt-[-0.6rem] text-white text-center">
+            GK
+          </div>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Second Div -->
+    <div class="w-full max-w-[896px] bg-[#dfdfdf45] rounded-lg shadow-lg p-4">
+      <div id="attackPositions" class="flex justify-evenly h-[155px] mt-1"></div>
+      <div id="defensivePositions" class="flex justify-evenly h-[155px] mt-1"></div>
+      <div id="BackPositions" class="flex justify-evenly h-[155px] mt-1"></div>
+      <div id="goalPositions" class="flex justify-evenly h-[155px] mt-1"></div>
+    </div>
+  </div>
+  
+    <!-- Cards Container -->
+    <div id="cardsContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 bg-[url('cards-bg.png')] bg-cover bg-center w-full max-w-[896px] p-5 mx-auto"></div>
+    <div id="cardsSubsContainer" class="w-full max-w-[896px]"></div>
+    
+    <div id="addedCardsContainer  " class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 bg-[url('cards-bg.png')] bg-cover bg-center w-full max-w-[896px] p-5 mx-auto"></div>
+  </div>
       </div>
 <div id="playerModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden ">
   <div class="bg-[#242121be] w-[90%] md:w-[600px] p-6 rounded-lg shadow-lg max-h-[90%] overflow-y-auto">
@@ -210,8 +208,8 @@
 
       <!-- Buttons -->
       <div class="flex justify-end space-x-3">
-        <button type="button" onclick="closePlayerModal()" class="px-4 py-2 bg-[#8080805f] text-white rounded-lg hover:bg-[#808080d6]">Cancel</button>
-        <button type="button" onclick="savePlayer()" class="px-4 py-2 bg-[#80808048] text-white rounded-lg hover:bg-[#808080a5]">Save</button>
+        <button id="save" type="button" class="px-4 py-2 bg-[#80808048] text-white rounded-lg hover:bg-[#808080a5]">Save</button>
+          <button type="button" onclick="closePlayerModal()" class="px-4 py-2 bg-[#8080805f] text-white rounded-lg hover:bg-[#808080d6]">Cancel</button>
       </div>
     </form>
   </div>
@@ -230,6 +228,7 @@
         </div>
     </footer>
     <script src="scripts.js"></script>
+    
 </body>
 
 </html>
