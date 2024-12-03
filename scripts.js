@@ -487,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
                 if (emptySlot) {
                     emptySlot.innerHTML = `
-                    <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                    <div id="cardPlayerPrince" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
                         <button class="h-40" aria-label="Card Button">
                             <img src="CARDft.png" class="w-28 h-40">
                             <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
@@ -533,6 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>
                             </div>
                         </button>
+                      <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removePlayerPrinc">X</button>
                     </div>
                     `;
                 } else {
@@ -548,7 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
                 if (emptySlot) {
                     emptySlot.innerHTML = `
-                    <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+                    <div id="cardPlayerPrince" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
                         <button class="h-40" aria-label="Card Button">
                             <img src="CARDft.png" class="w-28 h-40">
                             <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
@@ -594,6 +595,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>
                             </div>
                         </button>
+                        <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removePlayerPrinc">X</button>
                     </div>
                     `;
                 } else {
@@ -606,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (positionSlot) {
           positionSlot.innerHTML = `
           ${player.Position === "GK" ? `
-              <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+              <div id="cardPlayerPrince" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
                   <button class="h-40" aria-label="Card Button">
                       <img src="CARDft.png" class="w-28 h-40">
                       <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
@@ -651,10 +653,12 @@ document.addEventListener("DOMContentLoaded", () => {
                               </div>
                           </div>
                       </div>
+                      <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removePlayerPrinc">X</button>
+
                   </button>
               </div>
           ` : `
-              <div id="subCard1" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+              <div id="cardPlayerPrince" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
                   <button class="h-40" aria-label="Card Button">
                       <img src="CARDft.png" class="w-28 h-40">
                       <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
@@ -699,6 +703,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               </div>
                           </div>
                       </div>
+                      <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removePlayerPrinc">X</button>
                   </button>
               </div>
           `}
@@ -708,6 +713,15 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('Position not found!');
         }
     }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (event.target && event.target.id === "removePlayerPrinc"){
+            const existingSubCard = event.target.closest("#cardPlayerPrince");
+            if (existingSubCard) {
+              existingSubCard.remove();
+            }
+          }
         });
   
     const showPlayerSubsDataBtn = card.querySelector("#showPlayerSubsDataBtn");
@@ -777,7 +791,8 @@ document.addEventListener("DOMContentLoaded", () => {
                       </div>
                   </button>
                   <div class="flex" data-position=${player.Position} data-rating=${player.Rating} data-club=${player.Club} data-photo=${player.Photo} data-name=${player.Name} data-speed=${player.Speed} data-reflexes=${player.Reflexes} data-kicking=${player.Kicking} data-handling=${player.Handling} data-diving=${player.Diving} data-positioning=${player.Positioning}>
-                      <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerDataBtnSubs">Show Player Data</button>
+                      <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerDataBtnSubs">Add</button>
+                      <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removeSubsPlayer">X</button>
                   </div>
                  </div>
                  ` : `
@@ -828,7 +843,8 @@ document.addEventListener("DOMContentLoaded", () => {
                       </div>
                   </button>
                   <div class="flex" data-position=${player.Position} data-rating=${player.Rating} data-club=${player.Club} data-photo=${player.Photo} data-name=${player.Name} data-pace=${player.Pace} data-shooting=${player.Shooting} data-passing=${player.Passing} data-dribbling=${player.Dribbling} data-defending=${player.Defending} data-physical=${player.Phisical}>
-                      <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerDataBtnSubs">Show Player Data</button>
+                      <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="showPlayerDataBtnSubs">Add</button>
+                      <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removeSubsPlayer">X</button>
                   </div>
               </div>
           `}
@@ -838,6 +854,15 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
           console.error("Invalid position or missing slot for player position.");
       }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "removeSubsPlayer"){
+      const existingSubCard = event.target.closest("#subCard1");
+      if (existingSubCard) {
+        existingSubCard.remove();
+      }
+    }
   });
   
   document.addEventListener("click", (event) => {
@@ -890,7 +915,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
   
           const playerCard = `
-              <div class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+              <div id="cardPlayer" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
                   <button class="h-40" aria-label="Card Button">
                       <img src="CARDft.png" class="w-28 h-40">
                       <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
@@ -968,11 +993,21 @@ document.addEventListener("DOMContentLoaded", () => {
                           </div>
                       </div>
                   </button>
+                  <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="removePlayer">remove</button>
               </div>
           `;
   
           fieldSlot.innerHTML = playerCard;
       }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "removePlayer"){
+      const existingSubCard = event.target.closest("#cardPlayer");
+      if (existingSubCard) {
+        existingSubCard.remove();
+      }
+    }
   });
   
   
@@ -1021,7 +1056,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Player added successfully:", newPlayer);
       console.log("Updated players list:", playersData[0].players);
     
-      closePlayerModal();
       document.getElementById("playerForm").reset();
     
       const newCard = createPlayerCard(newPlayer);
@@ -1153,7 +1187,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('warning_rName').classList.add('hidden');
     }
   
-    // Validate photo URL
     const photo = document.getElementById('Photo').value.trim();
     if (!photo || !/^https?:\/\/.+/.test(photo)) {
       document.getElementById('warning_Photo').classList.remove('hidden');
@@ -1162,7 +1195,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('warning_Photo').classList.add('hidden');
     }
   
-    // Validate nationality
     const nationality = document.getElementById('Nationality').value.trim();
     if (!nationality || nationality.length < 2 || !/^[A-Za-z\s]+$/.test(nationality)) {
       document.getElementById('warning_Nationality').classList.remove('hidden');
@@ -1171,7 +1203,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('warning_Nationality').classList.add('hidden');
     }
   
-    // Validate flag URL
     const flag = document.getElementById('Flag').value.trim();
     if (!flag || !/^https?:\/\/.+/.test(flag)) {
       document.getElementById('warning_Flag').classList.remove('hidden');
@@ -1180,7 +1211,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('warning_Flag').classList.add('hidden');
     }
   
-    // Validate club name
     const club = document.getElementById('Club').value.trim();
     if (!club || club.length < 2) {
       document.getElementById('warning_Club').classList.remove('hidden');
@@ -1189,7 +1219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('warning_Club').classList.add('hidden');
     }
   
-    // Validate club logo URL
     const logo = document.getElementById('Logo').value.trim();
     if (!logo || !/^https?:\/\/.+/.test(logo)) {
       document.getElementById('warning_Logo').classList.remove('hidden');
@@ -1197,27 +1226,15 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       document.getElementById('warning_Logo').classList.add('hidden');
     }
-  
-    // Validate ratings
-    const fields = ['Rating', 'Pace', 'Shooting', 'Passing', 'Dribbling', 'Defending', 'Physical'];
-    fields.forEach(field => {
-      const value = document.getElementById(field).value.trim();
-      if (!value || isNaN(value) || value < 0 || value > 100) {
-        document.getElementById(`warning_${field}`).classList.remove('hidden');
-        isValid = false;
-      } else {
-        document.getElementById(`warning_${field}`).classList.add('hidden');
-      }
-    });
-  
-    return isValid;
   }
 
   document.getElementById('savePlayerbtn').addEventListener('click', function () {
     if (validatePlayerForm()) {
       alert('Form is valid!');
       closePlayerModal();
+
       document.getElementById("playerForm").reset();
+      
     } else {
       alert('Please fix the highlighted errors.');
     }
