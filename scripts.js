@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // player data with details about each player
     const playersData = [
         {
             "players": [
@@ -421,17 +422,17 @@ document.addEventListener("DOMContentLoaded", () => {
           }
   
     ];
-  
+    // references to the HTML elements
     const cardsContainer = document.getElementById("cardsContainer");
     const staticCard = document.getElementById("staticCard");
-  
+    // creates player cards 
     playersData[0].players.forEach(player => {
       const card = document.createElement("div");
       card.className =
           "flex flex-col items-center p-4 bg-black border-2 bg-opacity-65 rounded-3xl shadow-md hover:shadow-xl transition-shadow";
-      
+      // tfo
       console.log(player.Position);
-      
+      // incase its a goal keeper or not
       card.innerHTML = `
           ${player.Position === "GK" ? `
               <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
@@ -475,14 +476,16 @@ document.addEventListener("DOMContentLoaded", () => {
       
         
         cardsContainer.appendChild(card);
+        // to add player to the team based on position
         const showPlayerDataBtn = card.querySelector("#showPlayerDataBtn");
         showPlayerDataBtn.addEventListener("click", () => {
             if (player.Position === "CM") {
                 const cmSlots = [
+                  // checks if slot is full
                     document.getElementById("CM1"),
                     document.getElementById("CM2"),
                 ];
-
+                // finds the first empty slot
                 const emptySlot = cmSlots.find(slot => slot && !slot.innerHTML.trim());
         
                 if (emptySlot) {
@@ -539,6 +542,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     alert('No empty CM slot available!');
                 }
+                // Check if the player's position is "CB" (Center Back)
+
             } else if (player.Position === "CB") {
                 const cmSlots = [
                     document.getElementById("CB1"),
@@ -725,6 +730,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
   
     const showPlayerSubsDataBtn = card.querySelector("#showPlayerSubsDataBtn");
+    // Define mapping between player positions and their corresponding DOM slots
     showPlayerSubsDataBtn.addEventListener("click", () => {
       const positionSlots = {
           "LW": document.getElementById("attackPositions"),
@@ -736,10 +742,12 @@ document.addEventListener("DOMContentLoaded", () => {
           "LB": document.getElementById("BackPositions"),
           "RB": document.getElementById("BackPositions")
       };
-  
+      // fin the slot that corresponds to the player's position
+
       const positionSlot = positionSlots[player.Position];
   
       if (positionSlot) {
+        // clears hadak l innerhtml
           positionSlot.innerHTML = "";
   
           const playerCardTemplate = `
@@ -849,7 +857,8 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
           `}
           `;
-  
+          // insert the generated player card into the appropriate slot
+
           positionSlot.innerHTML = playerCardTemplate;
       } else {
           console.error("Invalid position or missing slot for player position.");
@@ -868,11 +877,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (event) => {
       if (event.target && event.target.id === "showPlayerDataBtnSubs") {
           const parentCard = event.target.closest(".flex");
+          // incase makanx it closes it
           if (!parentCard) return;
   
           const position = parentCard.dataset.position;
           let playerData = {};
-  
+          // obj dial gk
           if (position === "GK") {
               playerData = {
                   Position: parentCard.dataset.position,
@@ -887,6 +897,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   Diving: parentCard.dataset.diving || "N/A",
                   Positioning: parentCard.dataset.positioning || "N/A",
               };
+              // obj for players
           } else {
               playerData = {
                   Position: parentCard.dataset.position,
@@ -904,6 +915,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
   
           const playerPosition = playerData.Position;
+          // retrieve the corresponding field slot for the player's position
           const fieldSlot = document.getElementById(playerPosition);
   
           if (!fieldSlot) return;
@@ -915,10 +927,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }
   
           const playerCard = `
-              <div id="cardPlayer" class="flex items-center justify-center w-[6rem] h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
+              <div id="cardPlayer" class="flex items-center justify-center w-[6rem]  h-[8.8rem] shadow-white hover:drop-shadow-2xl transition-all duration-200 ease-in-out">
                   <button class="h-40" aria-label="Card Button">
                       <img src="CARDft.png" class="w-28 h-40">
-                      <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-4 h-40 w-28 mt-2">
+                      <div class="text-[#ffffff] gap-1 flex flex-col items-center justify-center text-2xl relative bottom-[11rem] left-[2rem] h-40 w-28 mt-2">
                           <div class="">
                               <div class="flex">
                                   <div class="text-sm relative left-1.5 flex flex-col">
@@ -934,7 +946,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               </div>
                               <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
                                   ${position === "GK" ? `
-                                  <div id="specs" class="flex gap-0.5 justify-center items-start mr-[2.1rem]">
+                                  <div id="specs" class="flex gap-0.5 justify-center items-start text-[0.5] mr-[2.1rem]">
                                       <div>
                                           <div class="h-3 flex items-center"><span class="text-[0.4rem] font-thin">DIV</span></div>
                                           <div class="h-2.5 flex items-center justify-center"><span class="text-[0.4rem] font-semibold">${playerData.Diving}</span></div>
@@ -993,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           </div>
                       </div>
                   </button>
-                  <button class="mt-4 bg-black text-white border-2 rounded-2xl py-2 px-4 hover:bg-slate-500 transition duration-700 active:bg-slate-800" id="removePlayer">remove</button>
+                  <button class="absolute top-1 right-1 bg-black text-white border-2 rounded-full w-[1.5rem] h-[1.5rem] flex items-center justify-center" id="removePlayer">X</button>
               </div>
           `;
   
@@ -1012,7 +1024,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
     });
-  // saving
+  // even listener for the "Save Player" button
     document.getElementById("savePlayerbtn").addEventListener("click", function () {
       const name = document.getElementById("rName").value.trim();
       const photo = document.getElementById("Photo").value.trim();
@@ -1028,12 +1040,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dribbling = parseInt(document.getElementById("Dribbling").value, 10) || 0;
       const defending = parseInt(document.getElementById("Defending").value, 10) || 0;
       const physical = parseInt(document.getElementById("Physical").value, 10) || 0;
-    
-      // if (!name || !photo || !position || !nationality || !flag || !club || !logo) {
-      //   alert("Please fill in all required fields.");
-      //   return;
-      // }
-    
+      // new player object with all the details from the form
       const newPlayer = {
         Name: name,
         Photo: photo,
@@ -1050,23 +1057,30 @@ document.addEventListener("DOMContentLoaded", () => {
         Defending: defending,
         Phisical: physical,
       };
-    
+      let status =  validatePlayerForm();
+      // qdd the new player object to the `playersData` array
       playersData[0].players.push(newPlayer);
     
       console.log("Player added successfully:", newPlayer);
       console.log("Updated players list:", playersData[0].players);
     
       document.getElementById("playerForm").reset();
-    
+    // create nez player card for the saved player and add it to the DOM
+    if(status) {
       const newCard = createPlayerCard(newPlayer);
       cardsContainer.appendChild(newCard);
+      document.getElementById("playerForm").reset();
+      closePlayerModal();
+    } else {
+      alert("Invalid form data. Please fill all required fields correctly.");
+    }
     });
-    
+    // karkeati data using the player data
     function createPlayerCard(player) {
         const card = document.createElement("div");
         card.className =
           "flex flex-col items-center p-4 bg-black border-2 bg-opacity-65 rounded-3xl shadow-md hover:shadow-xl transition-shadow";
-      
+        // set the inner HTML of the card with dynamic player data
         card.innerHTML = `
           <img class="w-24 h-24 rounded-full shadow-md mb-3" src="${player.Photo}" alt="${player.Name}">
           <h3 class="text-lg font-bold text-white">${player.Name}</h3>
@@ -1175,12 +1189,12 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Closing player modal...");
     document.getElementById("playerModal").classList.add("hidden");
   }
+  // // Function to validate the player form
   function validatePlayerForm() {
     let isValid = true;
   
-    // Validate player name
     const rName = document.getElementById('rName').value.trim();
-    if (!rName || rName.length < 2 || rName.length > 50 || !/^[A-Za-z\s-]+$/.test(rName)) {
+    if (!rName || rName.length > 50 || !/^[A-Za-z\s-]+$/.test(rName)) {
       document.getElementById('warning_rName').classList.remove('hidden');
       isValid = false;
     } else {
@@ -1196,7 +1210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     const nationality = document.getElementById('Nationality').value.trim();
-    if (!nationality || nationality.length < 2 || !/^[A-Za-z\s]+$/.test(nationality)) {
+    if (!nationality || !/^[A-Za-z\s]+$/.test(nationality)) {
       document.getElementById('warning_Nationality').classList.remove('hidden');
       isValid = false;
     } else {
@@ -1226,17 +1240,20 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       document.getElementById('warning_Logo').classList.add('hidden');
     }
+    return isValid;
   }
 
-  document.getElementById('savePlayerbtn').addEventListener('click', function () {
-    if (validatePlayerForm()) {
-      alert('Form is valid!');
-      closePlayerModal();
+  // document.getElementById('savePlayerbtn').addEventListener('click', function () {
+  //   console.log(validatePlayerForm());
+  //   if (validatePlayerForm()) {
+  //     alert('Form is valid!');
+  //     closePlayerModal();
 
-      document.getElementById("playerForm").reset();
+  //     document.getElementById("playerForm").reset();
       
-    } else {
-      alert('Please fix the highlighted errors.');
-    }
+  //   } else {
+  //     alert('Please fix the highlighted errors.');
 
-  });
+  //   }
+
+  // });
